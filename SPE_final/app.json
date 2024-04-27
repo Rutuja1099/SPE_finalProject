@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "SPE_final",
-    "slug": "SPE_final",
+    "name": "MobApp",
+    "slug": "MobApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon_suhrud.jpeg",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -24,7 +24,13 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
-    }
+      "favicon": "./assets/icon_suhrud.jpeg"
+    },
+    "plugins": [ [
+      "expo-font",
+      {
+      "fonts": ["./assets/fonts/Pangolin-Regular.ttf","node_modules/@expo-google-fonts/Pangolin/Pangolin_400Regular.ttf"]
+      }
+    ]]
   }
 }
