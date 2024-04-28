@@ -4,7 +4,6 @@
     "slug": "MobApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon_suhrud.jpeg",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -24,7 +23,6 @@
       }
     },
     "web": {
-      "favicon": "./assets/icon_suhrud.jpeg"
     },
     "plugins": [ [
       "expo-font",
