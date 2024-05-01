@@ -12,8 +12,58 @@ const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const navigateMain = () => {
+    const navigateMain = async () => {
+
+        // const loginURL = webServerUrl+"/auth/login/patient";
+        // const method='POST';
+        // const data={
+        //     username:username,
+        //     password:password
+        // }
+        
+        // try{
+        //     const response=await HttpService(method,loginURL,data);
+        //     console.log(response.status)
+        //     if(response.status===200){
+        //         console.log("Successful");
+        //         console.log(response.data);
+        //         try{
+        //             await AsyncStorage.setItem('patientData',JSON.stringify(response.data));
+
+        //             console.log("from storage");
+        //             console.log(await AsyncStorage.getItem('patientData'));
+        //             navigation.navigate("UserInput");
+
+        //         }catch(error){
+        //             console.log("error while saving data");
+        //             console.log(error);
+        //         }
+
+        //         const sessionData = await AsyncStorage.getItem('patientData');
+        //         const data=JSON.parse(sessionData);
+        //         const loginstatus = data.ptFirstTimeLogin;
+
+        //         if(loginstatus === true){
+        //             props.navigation.navigate("Questionnaire");
+        //         }
+        //         else{
+        //             props.navigation.navigate("Dashboard");
+        //         }                
+                
+        //     }
+        //     else{
+        //         alert(response.data.message);
+        //         setUsername('');
+        //         setPassword('');
+        //     }
+        // }catch(error){
+        //     alert(error.data.message);
+        //     console.log(error);
+        //     setUsername('');
+        //     setPassword('');
+        // }
         navigation.navigate("UserInput");
+
     }
 
     return (
