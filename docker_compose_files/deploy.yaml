@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: ./Docker_frontend  # Specify the directory containing your frontend Dockerfile
+    ports:
+      - "3000:3000"  # Map port 3000 of the container to port 3000 on the host
+    depends_on:
+      - backend  # Frontend service depends on the backend service
+
+  backend:
+    build:
+      context: ./Docker_backend  # Specify the directory containing your backend Dockerfile
+    ports:
+      - "5000:5000"  # Map port 5000 of the container to port 5000 on the host
+    depends_on:
+      - database  # Backend service depends on the database service
+
+  database:
+    build:
+      context: ./Docker_database  # Specify the directory containing your database Dockerfile
+    ports:
+      - "3306:3306"  # Map port 3306 of the container to port 3306 on the host
+    environment:
+      MYSQL_ROOT_PASSWORD: "Saurabh123"
+      MYSQL_DATABASE: "SPE"  # Replace with your actual database name
+    volumes:
+      - ./your_database_dump.sql:/docker-entrypoint-initdb.d/your_database_dump.sql  # Mount the SQL dump file

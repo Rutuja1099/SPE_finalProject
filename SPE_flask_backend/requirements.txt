@@ -1,0 +1,4 @@
+-i https://pypi.python.org/simple/
+flask-sqlalchemy==2.5.1
+flask==1.0
+sqlalchemy==1.4.3
