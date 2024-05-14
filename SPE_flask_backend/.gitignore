@@ -1,0 +1,32 @@
+# Compiled Python files
+*.pyc
+__pycache__/
+
+# Virtual environment
+venv/
+ENV/
+
+# Dependency directories
+# If you're using pip
+lib/
+include/
+
+# IDE files (e.g., for Visual Studio Code)
+.vscode/
+*.code-workspace
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Configuration files with sensitive information
+# For example, database configuration files
+config.ini
+*.conf
+
+# Environment variables
+.env
+
+# Compiled files or directories
+*.pyo
+*.pyd
