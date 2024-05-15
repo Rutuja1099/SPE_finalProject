@@ -3,7 +3,7 @@ version: '3'
 services:
   frontend:
     build:
-      context: ./Docker_frontend  # Specify the directory containing your frontend Dockerfile
+      context: ./SPE_final  # Specify the directory containing your frontend Dockerfile
     ports:
       - "3000:3000"  # Map port 3000 of the container to port 3000 on the host
     depends_on:
@@ -11,7 +11,7 @@ services:
 
   backend:
     build:
-      context: ./Docker_backend  # Specify the directory containing your backend Dockerfile
+      context: ./SPE_flask_backend  # Specify the directory containing your backend Dockerfile
     ports:
       - "5000:5000"  # Map port 5000 of the container to port 5000 on the host
     depends_on:
@@ -26,4 +26,4 @@ services:
       MYSQL_ROOT_PASSWORD: "Saurabh123"
       MYSQL_DATABASE: "SPE"  # Replace with your actual database name
     volumes:
-      - ./your_database_dump.sql:/docker-entrypoint-initdb.d/your_database_dump.sql  # Mount the SQL dump file
+      - ./database_dump.sql:/docker-entrypoint-initdb.d/database_dump.sql  # Mount the SQL dump file
