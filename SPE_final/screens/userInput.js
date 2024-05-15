@@ -41,11 +41,13 @@ const UserInput = () => {
         quality: 1,
         base64: true,
       });
-      if (!result.cancelled) {
+      console.log("result",result);
+      if (!result.canceled) {
+        console.log("result type",result.assets[0].type)
         const mediaFile = {
-          type: result.type,
-          base64: result.base64,
-          uri: result.uri,
+          type: result.assets[0].type,
+          base64: result.assets[0].base64,
+          uri: result.assets[0].uri,
         };
         console.log("rutuuja");
         await toServer(mediaFile);
@@ -66,7 +68,8 @@ const UserInput = () => {
         ? ((route = "/image"), (content_type = "image/jpeg"))
         : ((route = "/video"), (content_type = "video/mp4"));
       url = webServerUrl + route;
-  
+      console.log("url",url)
+      console.log(" mediaFile",  mediaFile.uri)
       let response = await FS.uploadAsync(url, mediaFile.uri, {
         headers: {
           "content-type": content_type,

@@ -83,7 +83,7 @@ def useradd():
     db.session.commit()
     return user_schema.jsonify(users)
  
- @app.route("/image", methods=['GET', 'POST'])
+@app.route("/image", methods=['GET', 'POST'])
 def image():
     if(request.method == "POST"):
         bytesOfImage = request.get_data()
@@ -92,13 +92,14 @@ def image():
         return "Image read"
 
 
-@app.route("/video", methods=['GET', 'POST'])
+@app.route("/video", methods=['POST'])
 def video():
     if(request.method == "POST"):
         bytesOfVideo = request.get_data()
         with open('video.mp4', 'wb') as out:
             out.write(bytesOfVideo)
         return "Video read"
+
 def create_tables():
     db.create_all()
 
