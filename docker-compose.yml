@@ -1,29 +1,34 @@
 version: '3'
 
 services:
-  frontend:
-    build:
-      context: ./SPE_final/  # Specify the directory containing your frontend Dockerfile
+  conatiner1:
+    image: frontend-image
     ports:
-      - "3000:3000"  # Map port 3000 of the container to port 3000 on the host
+      - "3000:3000"
+    networks:
+      - mynetwork
     depends_on:
-      - backend  # Frontend service depends on the backend service
+      - container2
 
-  backend:
-    build:
-      context: ./SPE_flask_backend/  # Specify the directory containing your backend Dockerfile
+  conatiner2:
+    image: backend-image
     ports:
-      - "5000:5000"  # Map port 5000 of the container to port 5000 on the host
+      - "5000:5000"
+    networks:
+      - mynetwork
     depends_on:
-      - database  # Backend service depends on the database service
+      - database
 
   database:
     image: mysql:8.0.36
-    container_name: SPE_db
+    container_name: SPE
     ports:
-      - "3306:3306"  # Map port 3306 of the container to port 3306 on the host
+      - "3307:3306"  # Map port 3306 of the container to port 3306 on the host
     environment:
       MYSQL_ROOT_PASSWORD: "Saurabh123"
       MYSQL_DATABASE: "SPE"  # Replace with your actual database name
     volumes:
       - ./database_dump.sql:/docker-entrypoint-initdb.d/database_dump.sql  # Mount the SQL dump file
+
+networks:
+  mynetwork: bridge

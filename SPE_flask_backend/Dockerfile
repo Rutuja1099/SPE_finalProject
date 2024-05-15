@@ -4,11 +4,11 @@ FROM python:3.9-slim
 # Set working directory
 WORKDIR /app
 
-RUN apt install python3-venv
+# RUN apt install python3-venv
 
-RUN python3 -m venv venv
+# CMD python3 -m venv venv
 
-RUN source venv/bin/activate
+# CMD source venv/bin/activate
 
 # Copy and install requirements
 COPY requirements.txt .
@@ -21,4 +21,4 @@ COPY . .
 EXPOSE 5000
 
 # Command to run the app
-CMD ["py", "app.py"]
+CMD ["python3", "app.py"]
