@@ -10,7 +10,7 @@ services:
     depends_on:
       - container2
 
-  conatiner2:
+  container2:
     image: backend-image
     ports:
       - "5000:5000"
