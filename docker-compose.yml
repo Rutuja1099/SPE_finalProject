@@ -4,7 +4,7 @@ services:
   conatiner1:
     image: frontend-image
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3000:3000"
     networks:
       - mynetwork
     depends_on:
@@ -13,7 +13,7 @@ services:
   container2:
     image: backend-image
     ports:
-      - "5000:5000"
+      - "127.0.0.1:5000:5000"
     networks:
       - mynetwork
     depends_on:
@@ -23,7 +23,7 @@ services:
     image: mysql:8.0.36
     container_name: SPE
     ports:
-      - "3307:3306"  # Map port 3306 of the container to port 3306 on the host
+      - "127.0.0.1:3307:3306"  # Map port 3306 of the container to port 3306 on the host
     environment:
       MYSQL_ROOT_PASSWORD: "Saurabh123"
       MYSQL_DATABASE: "SPE"  # Replace with your actual database name
