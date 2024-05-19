@@ -25,7 +25,7 @@ pipeline {
         stage("Server build") {
             steps {
                 dir('SPE_flask_backend'){
-                bat "pip install -r requirements.txt"
+                bat "python -m pip install --upgrade pip && python -m pip install -r requirements.txt"
                 bat 'docker build -t backend-image .'
             }}
         }
