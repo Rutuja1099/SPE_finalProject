@@ -1,13 +1,13 @@
 # Use the official Python image as the base image
-FROM python:3.9
+FROM python:3.9-windowsservercore
 
 # Set working directory
-WORKDIR /app
+WORKDIR C:\app
 
-RUN apt-get update && apt-get install -y \
-    libgl1 \
-    libglib2.0-0 \
-    && rm -rf /var/lib/apt/lists/*
+# Install necessary system dependencies
+RUN powershell -Command \
+    Install-WindowsFeature NET-Framework-45-ASPNET; \
+    Install-WindowsFeature Web-Asp-Net45
     
 # RUN apt install python3-venv
 
