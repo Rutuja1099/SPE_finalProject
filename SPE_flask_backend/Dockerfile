@@ -17,7 +17,7 @@ RUN powershell -Command \
 
 # Copy and install requirements
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN python -m pip install -r requirements.txt
 
 # Copy the entire backend directory to the working directory
 COPY . .
