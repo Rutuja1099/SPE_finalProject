@@ -16,8 +16,8 @@ pipeline {
         stage('client build') {
             steps {
                 dir('SPE_final'){
-                sh "npm install || exit 1"
-                sh 'docker build -t frontend-image .'
+                bat "npm install || exit 1"
+                bat 'docker build -t frontend-image .'
             }
             }
         }
@@ -25,19 +25,19 @@ pipeline {
         stage("Server build") {
             steps {
                 dir('SPE_flask_backend'){
-                sh "pip install -r requirements.txt"
-                sh 'docker build -t backend-image .'
+                bat "pip install -r requirements.txt"
+                bat 'docker build -t backend-image .'
             }}
         }
 
         stage("Push to docker hub"){
             steps {
                 script {
-                        sh "docker login --username saurabhv09 --password Obito@123"
-                        sh 'docker tag frontend-image saurabhv09/frontend-image:latest'
-                        sh 'docker push saurabhv09/frontend-image:latest'
-                        sh "docker tag backend-image saurabhv09/backend-image:latest"
-                        sh "docker push saurabhv09/backend-image:latest"
+                        bat "docker login --username saurabhv09 --password Obito@123"
+                        bat 'docker tag frontend-image saurabhv09/frontend-image:latest'
+                        bat 'docker push saurabhv09/frontend-image:latest'
+                        bat "docker tag backend-image saurabhv09/backend-image:latest"
+                        bat "docker push saurabhv09/backend-image:latest"
                     
                 }
             }
