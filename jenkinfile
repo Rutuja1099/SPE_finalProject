@@ -16,7 +16,7 @@ pipeline {
         stage('client build') {
             steps {
                 dir('SPE_final'){
-                sh "npm install"
+                sh "npm install || exit 1"
                 sh 'docker build -t frontend-image .'
             }
             }
