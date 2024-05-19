@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  conatiner1:
+  container1:
     image: frontend-image
     ports:
       - "127.0.0.1:8081:8081"
