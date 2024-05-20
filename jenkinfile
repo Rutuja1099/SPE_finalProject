@@ -34,8 +34,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 dir('SPE_flask_backend') {
-                    sh "pip install -r requirements.txt"
-                    sh "pytest --junitxml=test-results.xml"
+                    sh 'python3 unit_test.py '
                 }
             }
         }
