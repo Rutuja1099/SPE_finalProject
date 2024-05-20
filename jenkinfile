@@ -65,9 +65,4 @@ pipeline {
 
    }
 
-    post {
-        always {
-            junit 'SPE_flask_backend/test-results.xml'
-        }
-    }
 }
