@@ -18,8 +18,7 @@ services:
       - mynetwork
   #   depends_on:
   #     - database
-
-<<<<<<< HEAD
+  #
   # database:
   #   image: mysql:8.0.36
   #   container_name: SPE
@@ -32,4 +31,4 @@ services:
   #     - ./database_dump.sql:/docker-entrypoint-initdb.d/database_dump.sql  # Mount the SQL dump file
 
 networks:
-  mynetwork: bridge
+  mynetwork:
