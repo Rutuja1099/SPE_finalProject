@@ -6,7 +6,7 @@ from flask_cors import CORS #ModuleNotFoundError: No module named 'flask_cors' =
 from urllib.parse import quote_plus
 import pickle
 
-from model import yolomodel
+# from model import yolomodel
 
 app = Flask(__name__)
 CORS(app)
@@ -104,9 +104,9 @@ def create_tables():
     db.create_all()
 
 
-def model():
-    # Load the model
-    model = pickle.load(open('model.pkl','rb'))
+# def model():
+#     # Load the model
+#     model = pickle.load(open('model.pkl','rb'))
 
 
 if __name__=='__main__':
