@@ -4,21 +4,22 @@ services:
   conatiner1:
     image: frontend-image
     ports:
-      - "3000:3000"
+      - "127.0.0.1:8081:8081"
     networks:
       - mynetwork
     depends_on:
       - container2
 
-  conatiner2:
+  container2:
     image: backend-image
     ports:
-      - "5000:5000"
+      - "127.0.0.1:5000:5000"
     networks:
       - mynetwork
   #   depends_on:
   #     - database
 
+<<<<<<< HEAD
   # database:
   #   image: mysql:8.0.36
   #   container_name: SPE
