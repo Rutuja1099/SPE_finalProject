@@ -30,6 +30,16 @@ pipeline {
             }}
         }
 
+
+        stage('Run Tests') {
+            steps {
+                dir('SPE_flask_backend') {
+                    sh "pip install -r requirements.txt"
+                    sh "pytest --junitxml=test-results.xml"
+                }
+            }
+        }
+
         stage("Push to docker hub"){
             steps {
                 script {
@@ -55,4 +65,10 @@ pipeline {
         }
 
    }
+
+    post {
+        always {
+            junit 'SPE_flask_backend/test-results.xml'
+        }
+    }
 }
