@@ -31,7 +31,7 @@ pipeline {
         }
 
 
-        stage('Run Tests') {
+        stage('Run API Tests') {
             steps {
                 dir('SPE_flask_backend') {
                     sh 'python3 unit_test.py '
