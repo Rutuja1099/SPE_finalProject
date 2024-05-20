@@ -16,19 +16,19 @@ services:
       - "5000:5000"
     networks:
       - mynetwork
-    depends_on:
-      - database
+  #   depends_on:
+  #     - database
 
-  database:
-    image: mysql:8.0.36
-    container_name: SPE
-    ports:
-      - "3307:3306"  # Map port 3306 of the container to port 3306 on the host
-    environment:
-      MYSQL_ROOT_PASSWORD: "Saurabh123"
-      MYSQL_DATABASE: "SPE"  # Replace with your actual database name
-    volumes:
-      - ./database_dump.sql:/docker-entrypoint-initdb.d/database_dump.sql  # Mount the SQL dump file
+  # database:
+  #   image: mysql:8.0.36
+  #   container_name: SPE
+  #   ports:
+  #     - "3307:3306"  # Map port 3306 of the container to port 3306 on the host
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: "Saurabh123"
+  #     MYSQL_DATABASE: "SPE"  # Replace with your actual database name
+  #   volumes:
+  #     - ./database_dump.sql:/docker-entrypoint-initdb.d/database_dump.sql  # Mount the SQL dump file
 
 networks:
   mynetwork: bridge
