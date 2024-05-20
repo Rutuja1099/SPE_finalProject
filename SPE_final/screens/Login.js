@@ -3,8 +3,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView } from 'react-native-web';
 import { useState } from 'react';
-import webServerUrl from '../configurations/WebServer';
 import HttpService from '../services/HttpService';
+import webServerUrl from '../configurations/webServer';
 
 
 const Login = () => {
