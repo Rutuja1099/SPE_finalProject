@@ -34,11 +34,12 @@ pipeline {
         stage('Run Tests') {
             steps {
                 dir('SPE_flask_backend') {
-                    // Ensure pytest is installed
-                    sh "pip install --user -r requirements.txt"
-                    // Add the local bin to PATH
-                    sh "export PATH=$PATH:/var/lib/jenkins/.local/bin"
-                    sh "pytest --junitxml=test-results.xml"
+                   withPythonEnv('/usr/bin/python3.8') {
+                     sh '''pip install -r requirements.txt
+                           sudo chown -R jenkins:jenkins ./docs/unit-tests/htmlcoverage
+                           pytest --junitxml=test-results.xml
+                    '''
+                 } 
                 }
             }
         }
