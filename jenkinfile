@@ -34,49 +34,6 @@ pipeline {
         stage('Run Tests') {
             steps {
                 dir('SPE_flask_backend') {
-
-The issue here is that pytest is installed in a directory that is not on the PATH, which is why the pytest command is not found when executed. To resolve this, you need to add the directory where pytest is installed to the PATH environment variable in your Jenkins pipeline.
-
-You can update your Jenkins pipeline script to include this directory in the PATH before running pytest. Here’s how you can modify your pipeline script:
-
-groovy
-Copy code
-pipeline {
-    agent any
-
-    environment {
-        GITHUB_REPO_URL = 'https://github.com/Rutuja1099/SPE_finalProject.git'
-    }
-
-    stages {
-        stage('Stage 1: Git Clone') {
-            steps {
-                git branch: 'main',
-                url: GITHUB_REPO_URL
-            }
-        }
-
-        stage('Client Build') {
-            steps {
-                dir('SPE_final') {
-                    sh "npm install || exit 1"
-                    sh 'docker build -t frontend-image .'
-                }
-            }
-        }
-
-        stage('Server Build') {
-            steps {
-                dir('SPE_flask_backend') {
-                    sh "pip install --user -r requirements.txt"
-                    sh 'docker build -t backend-image .'
-                }
-            }
-        }
-
-        stage('Run Tests') {
-            steps {
-                dir('SPE_flask_backend') {
                     // Ensure pytest is installed
                     sh "pip install --user -r requirements.txt"
                     // Add the local bin to PATH
