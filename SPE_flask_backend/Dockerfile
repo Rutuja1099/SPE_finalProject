@@ -26,4 +26,5 @@ COPY . .
 EXPOSE 5000
 
 # Command to run the app
-CMD ["python3", "app.py"]
+# CMD ["python3", "app.py"]
+CMD flask run -h 0.0.0.0 -p 5000
