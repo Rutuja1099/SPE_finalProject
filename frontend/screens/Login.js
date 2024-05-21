@@ -42,7 +42,7 @@ const Login = () => {
         <View style={styles.container}>
             <View style={styles.formContainer}>
                 <View style={styles.logoContainer}>
-                    <Text style={styles.logoText}>JADE</Text>
+                    <Text style={styles.logoText}>Dhole</Text>
                 </View>
                 <View style={styles.inputContainer}>
                     <TextInput

@@ -8,14 +8,14 @@ pipeline {
     stages {
         stage('Stage 1: Git Clone') {
             steps {
-                git branch: 'main',
+                git branch: 'frontend',
                 url: GITHUB_REPO_URL
             }
         }
 
         stage('client build') {
             steps {
-                dir('SPE_final'){
+                dir('frontend'){
                 sh "npm install || exit 1"
                 sh 'docker build -t frontend-image .'
             }
