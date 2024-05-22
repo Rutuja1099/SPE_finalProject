@@ -5,16 +5,21 @@ FROM  node:latest AS builder
 WORKDIR /app
 
 # Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+# COPY package*.json ./
 
-# Install dependencies
-RUN npm install
 
 # Copy the entire frontend directory to the working directory
 COPY . .
 
+RUN npm install -g expo-cli && \
+    npm install expo-build-properties@0.11.1 --force
+
+
+# Install dependencies
+RUN npm install
+
 # Expose the port the app runs on
-EXPOSE 3000
+EXPOSE 8081
 
 # Command to run the app
 CMD ["npx","expo", "start", "--tunnel"]
