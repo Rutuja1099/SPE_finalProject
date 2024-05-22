@@ -9,6 +9,14 @@ RUN apt-get update && apt-get install -y \
     libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
     
+
+# Install ngrok
+RUN RUN apt-get update && apt-get install -y \
+    tar \
+    && tar xvzf ngrok-stable-linux-amd64.tgz -C /usr/local/bin
+    # rm ngrok-stable-linux-amd64.tgz
+
+
 # RUN apt install python3-venv
 
 # CMD python3 -m venv venv
@@ -28,3 +36,5 @@ EXPOSE 5000
 # Command to run the app
 # CMD ["python3", "app.py"]
 CMD flask run -h 0.0.0.0 -p 5000
+
+CMD ngrok http --domain=civil-basically-bat.ngrok-free.app 5000

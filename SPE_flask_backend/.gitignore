@@ -6,6 +6,9 @@ __pycache__/
 venv
 ENV/
 
+tmp_rep_result.mp4
+video.mp4
+yolov8x.pt
 
 app.log
 

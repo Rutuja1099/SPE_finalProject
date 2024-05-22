@@ -16,7 +16,7 @@ pipeline {
         stage('client build') {
             steps {
                 dir('frontend'){
-                sh "npm install || exit 1"
+                // sh "npm install || exit 1"
                 sh 'docker build -t frontend-image .'
             }
             }
@@ -25,7 +25,7 @@ pipeline {
         stage("Server build") {
             steps {
                 dir('SPE_flask_backend'){
-                sh "pip install -r requirements.txt"
+                // sh "pip install -r requirements.txt"
                 sh 'docker build -t backend-image .'
             }}
         }
@@ -62,6 +62,14 @@ pipeline {
                 }
             }
         }
+
+        // stage('Start Ngrok') {
+        //     steps {
+        //         script {
+        //             sh "ngrok http --domain=civil-basically-bat.ngrok-free.app 5000"
+        //         }
+        //     }
+        // }
 
    }
 
