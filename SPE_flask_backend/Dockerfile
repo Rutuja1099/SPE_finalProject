@@ -12,10 +12,11 @@ RUN apt-get update && apt-get install -y \
 
 # Install ngrok
 RUN apt-get update && apt-get install -y \
+    wget \
     tar \
-    && tar xvzf ngrok-stable-linux-amd64.tgz -C /usr/local/bin
-    # rm ngrok-stable-linux-amd64.tgz
-
+    && wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-v3-stable-linux-amd64.tgz \
+    && tar xvzf ngrok-stable-linux-amd64-v3.tgz -C /usr/local/bin \
+    && rm ngrok-stable-linux-amd64-v3.tgz
 
 # RUN apt install python3-venv
 
