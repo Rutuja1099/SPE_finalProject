@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     
 
 # Install ngrok
-RUN RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y \
     tar \
     && tar xvzf ngrok-stable-linux-amd64.tgz -C /usr/local/bin
     # rm ngrok-stable-linux-amd64.tgz
