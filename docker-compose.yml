@@ -46,6 +46,8 @@ services:
       - network.host=0.0.0.0
       - http.port=9200
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"  # Set JVM heap size options
+      - xpack.security.enabled=false
+      - discovery.type=single-node
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -53,7 +55,7 @@ services:
       - mynetwork
     volumes:
       - elastic_data:/usr/share/elasticsearch/data
-      - /home/saurabh/MTech/sem2/spe/finalproject/SPE_finalProject/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch/elasticsearch.yml
+      - /home/saurabh/MTech/sem2/spe/finalproject/SPE_finalProject/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch/elasticsearch.yml:ro,z
   
   logstash:
     image: docker.elastic.co/logstash/logstash:8.3.3
@@ -75,6 +77,9 @@ services:
     image: docker.elastic.co/kibana/kibana:8.3.3
     container_name: kibana
     restart: always
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      - ELASTICSEARCH_HOSTS=["http://elasticsearch:9200"]
     volumes:
       - ./kibana.yml:/usr/share/kibana/config/kibana.yml:ro,Z
     ports:
@@ -93,3 +98,4 @@ volumes:
 
 networks:
   mynetwork:
+    # driver: bridge
