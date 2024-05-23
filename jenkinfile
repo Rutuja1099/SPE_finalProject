@@ -63,18 +63,10 @@ pipeline {
             }
         }
 
-        stage('Install ngrok Dependencies') {
-            steps {
-                sh '''
-                sudo snap install ngrok
-                '''
-            }
-        }
-
         stage('Start Ngrok') {
             steps {
                 script {
-                    sh "screen -dmS ngrok http --domain=civil-basically-bat.ngrok-free.app 5000"
+                    sh "docker run -it -e NGROK_AUTHTOKEN=2gp3cyrxBZpArImt9sQ2OIZrklD_7yF9khnhz6sxtkVkhvpN7 ngrok/ngrok http 5000 --domain=civil-basically-bat.ngrok-free.app"
                 }
             }
         }
