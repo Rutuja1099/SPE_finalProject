@@ -5,8 +5,7 @@ from urllib.parse import quote_plus
 import pickle
 import logging
 
-
-from yolomodel import yolo_model
+# from yolomodel import yolo_model
 
 app = Flask(__name__)
 CORS(app)
@@ -21,6 +20,7 @@ logging.basicConfig(level=logging.DEBUG,
                     ])
 
 logger = logging.getLogger(__name__)
+
 
  
 @app.route('/',methods =['GET'])
@@ -41,8 +41,9 @@ def video():
         video_path = 'video.mp4'
         with open('video.mp4', 'wb') as out:
             out.write(bytesOfVideo)
-        yolo_model(video_path)
+        # yolo_model(video_path)
         return "Video read"
+
 
 if __name__=='__main__':
     with app.app_context():

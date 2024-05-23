@@ -13,9 +13,12 @@ const Login = () => {
         const loginURL = webServerUrl + "/";
         const method = 'GET';
         const data = null;
+        const headers = {
+            'ngrok-skip-browser-warning': 'true',
+        }
 
         try {
-            const response = await HttpService(method, loginURL, data);
+            const response = await HttpService(method, loginURL, data, headers);
             console.log(response.status);
             if (response.status === 200) {
                 console.log("Successful");
@@ -35,7 +38,7 @@ const Login = () => {
             setUsername('');
             setPassword('');
         }
-        navigation.navigate("UserInput");
+        // navigation.navigate("UserInput");
     };
 
     return (
