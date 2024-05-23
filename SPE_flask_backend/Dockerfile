@@ -28,6 +28,8 @@ RUN ngrok authtoken 2gp3cyrxBZpArImt9sQ2OIZrklD_7yF9khnhz6sxtkVkhvpN7
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN pip install python-logstash-async
+
 # Copy the entire backend directory to the working directory
 COPY . .
 
@@ -43,7 +45,6 @@ EXPOSE 5000
 # Command to run the app
 # CMD ["python3", "app.py"]
 # CMD flask run -h 0.0.0.0 -p 5000
-
 
 # Create a script to start both Flask and Ngrok
 RUN echo "#!/bin/bash\n\
