@@ -63,14 +63,6 @@ pipeline {
             }
         }
 
-        stage('Start Ngrok') {
-            steps {
-                script {
-                    sh "docker run -e NGROK_AUTHTOKEN=2gp3cyrxBZpArImt9sQ2OIZrklD_7yF9khnhz6sxtkVkhvpN7 ngrok/ngrok http 5000 --domain=civil-basically-bat.ngrok-free.app"
-                }
-            }
-        }
-
    }
 
 }
