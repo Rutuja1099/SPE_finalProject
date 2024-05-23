@@ -35,8 +35,9 @@ COPY . .
 EXPOSE 5000
 
 # CMD nohup ngrok http --domain=civil-basically-bat.ngrok-free.app 5000 &
+CMD docker run -it -e NGROK_AUTHTOKEN=2gp3cyrxBZpArImt9sQ2OIZrklD_7yF9khnhz6sxtkVkhvpN7 ngrok/ngrok http 80 --domain=civil-basically-bat.ngrok-free.app
 
-# CMD sleep 15
+CMD sleep 20
 
 # Command to run the app
 # CMD ["python3", "app.py"]
