@@ -38,7 +38,7 @@ const Login = () => {
             setUsername('');
             setPassword('');
         }
-        // navigation.navigate("UserInput");
+        navigation.navigate("UserInput");
     };
 
     return (

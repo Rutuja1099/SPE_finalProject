@@ -48,6 +48,7 @@ const UserInput = () => {
     let response = await FS.uploadAsync(url, mediaFile.uri, {
       headers: {
         "content-type": content_type,
+        'ngrok-skip-browser-warning': 'true',
       },
       httpMethod: "POST",
       uploadType: FS.FileSystemUploadType.BINARY_CONTENT,

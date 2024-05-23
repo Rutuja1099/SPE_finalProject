@@ -11,12 +11,12 @@ RUN apt-get update && apt-get install -y \
     
 
 # Install ngrok
-# RUN apt-get update && apt-get install -y \
-#     wget \
-#     tar \
-#     && wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-v3-stable-linux-amd64.tgz \
-#     && tar xvzf ngrok-v3-stable-linux-amd64.tgz -C /usr/local/bin \
-#     && rm ngrok-v3-stable-linux-amd64.tgz
+RUN wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.zip \
+    && unzip ngrok-v3-stable-linux-amd64.zip \
+    && mv ngrok /usr/local/bin/ 
+
+RUN ngrok authtoken 2gp3cyrxBZpArImt9sQ2OIZrklD_7yF9khnhz6sxtkVkhvpN7
+    # && rm ngrok-stable-linux-amd64.zip
 
 # RUN apt install python3-venv
 
@@ -35,10 +35,24 @@ COPY . .
 EXPOSE 5000
 
 # CMD nohup ngrok http --domain=civil-basically-bat.ngrok-free.app 5000 &
-CMD docker run -it -e NGROK_AUTHTOKEN=2gp3cyrxBZpArImt9sQ2OIZrklD_7yF9khnhz6sxtkVkhvpN7 ngrok/ngrok http 80 --domain=civil-basically-bat.ngrok-free.app
+# CMD docker pull ngrok/ngrok
+# CMD docker run --net=host -it -e NGROK_AUTHTOKEN=2gp3cyrxBZpArImt9sQ2OIZrklD_7yF9khnhz6sxtkVkhvpN7 ngrok/ngrok:latest http --domain=civil-basically-bat.ngrok-free.app 5000
 
-CMD sleep 20
+# CMD sleep 20
 
 # Command to run the app
 # CMD ["python3", "app.py"]
-CMD flask run -h 0.0.0.0 -p 5000
+# CMD flask run -h 0.0.0.0 -p 5000
+
+
+# Create a script to start both Flask and Ngrok
+RUN echo "#!/bin/bash\n\
+flask run -h 0.0.0.0 -p 5000 &\n\
+sleep 20\n\
+ngrok http --domain=civil-basically-bat.ngrok-free.app 5000\n" > start.sh
+
+
+RUN chmod +x start.sh
+
+# Command to run the script
+CMD ["./start.sh"]
