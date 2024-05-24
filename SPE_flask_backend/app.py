@@ -51,7 +51,7 @@ logger = logging.getLogger(__name__)
 # ------------------------Database configuration-------------------------
 
 # Databse configuration                                  Username:password@hostname/databasename
-password = quote_plus('Rutuja@10')
+password = quote_plus('Saurabh123')
 app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://root:{password}@localhost/SPE'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
