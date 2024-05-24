@@ -12,9 +12,8 @@ from urllib.parse import quote_plus
 from create_db import create_database
 from yolomodel import yolomodel
 
-from logstash_async.handler import AsynchronousLogstashHandler
-from logstash_async.formatter import LogstashFormatter
-
+# from logstash_async.handler import AsynchronousLogstashHandler
+# from logstash_async.formatter import LogstashFormatter
 
 # ------------------------Defining flask app-------------------------
 
@@ -151,6 +150,8 @@ def video():
 @app.route("/counts", methods=['GET'])
 def get_counts():
     return jsonify(vehicle_counts)
+
+
 
 
 if __name__=='__main__':

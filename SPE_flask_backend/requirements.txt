@@ -8,6 +8,7 @@ Flask-Cors==4.0.1
 opencv-python==4.9.0.80
 ultralytics==8.2.15
 ipython==8.18.1
+cryptography==42.0.7 
+pytest==7.1.2
 pymysql==1.1.0
 marshmallow-sqlalchemy==1.0.0
-cryptography==42.0.7 
