@@ -7,6 +7,6 @@ public class JunctionInfo {
     @Column(name="junctionId")
     private Integer junctionId;
 
-    @Column(name="junctionId")
+    @Column(name="junctionName")
     private String junctionName;
 }

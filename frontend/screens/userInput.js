@@ -9,6 +9,9 @@ import webServerUrl from '../configurations/webServer';
 const UserInput = () => {
   const [cameraRollPer, setCameraRollPer] = useState(null);
   const [disableButton, setDisableButton] = useState(false);
+  const [loading, setLoading] = useState(false);
+  // const [counts, setCounts] = useState(null);
+  const [vehicleCounts, setVehicleCounts] = useState(null);
 
   useEffect(() => {
     const requestPermissions = async () => {
@@ -20,6 +23,7 @@ const UserInput = () => {
 
   const pickMedia = async () => {
     setDisableButton(true);
+    setLoading(true);
     let result = await ImagePicker.launchCameraAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Videos,
       aspect: [4, 3],
@@ -34,9 +38,12 @@ const UserInput = () => {
       };
       await toServer(mediaFile);
     }
+    setLoading(false);
+    setDisableButton(false);
   };
 
   const toServer = async (mediaFile) => {
+    try {
     let type = mediaFile.type;
     let route = "";
     let url = "";
@@ -53,9 +60,20 @@ const UserInput = () => {
       httpMethod: "POST",
       uploadType: FS.FileSystemUploadType.BINARY_CONTENT,
     });
-    console.log(response.headers);
-    console.log(response.body);
-  };
+    console.log("response..............",response);
+    //const result = await response.text();
+    // if (response.ok) {
+    //   setVehicleCounts(result);
+    //   Alert.alert("Upload Successful", "Video has been processed successfully.");
+    // } else {
+    //   Alert.alert("Upload Failed", result.message || "Something went wrong.");
+    // }
+  }
+  catch (error) {
+    console.error("Error uploading video:", error);
+    Alert.alert("Upload Error", "Failed to upload the video.");
+  }
+  }
 
   return (
     <View style={styles.container}>
@@ -65,9 +83,11 @@ const UserInput = () => {
         </View>
         {cameraRollPer ? (
           <Text style={styles.uploadText}>Upload your video</Text>
+         
         ) : (
           <Text style={styles.permissionText}>Camera Roll Permission Required!</Text>
         )}
+         <Text style={styles.vehicleCount}>{vehicleCounts}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -91,6 +111,10 @@ const styles = StyleSheet.create({
   permissionText: {
     color: 'red',
   },
+  vehicleCount:{
+    fontSize:24,
+    color:'white',
+  }
 });
 
 export default UserInput;
