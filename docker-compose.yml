@@ -21,8 +21,8 @@ services:
       - "127.0.0.1:5000:5000"
     networks:
       - mynetwork
-  #   depends_on:
-  #     - database
+    depends_on:
+      - database
       
   # database:
   #   image: mysql:8.0.36
@@ -35,7 +35,19 @@ services:
   #   volumes:
   #     - ./database_dump.sql:/docker-entrypoint-initdb.d/database_dump.sql  # Mount the SQL dump file
 
-
+  database:
+    image: mysql:8
+    container_name: SPE_database
+    ports:
+      - "3308:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=Saurabh123
+      - MYSQL_DATABASE=SPE
+    volumes:
+      - userservice_database:/var/lib/mysql
+    command: --bind-address=0.0.0.0
+    networks:
+      - mynetwork
 
 
   elasticsearch:
@@ -88,7 +100,7 @@ services:
       - mynetwork
     depends_on:
       - elasticsearch
-  
+
 
 volumes:
   elastic_data:

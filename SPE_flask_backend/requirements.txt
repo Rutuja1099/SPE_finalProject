@@ -3,4 +3,8 @@ virtualenv==20.26.2
 Flask==3.0.3
 Flask-Cors==4.0.1
 pytest==7.1.2
-
+Flask-SQLAlchemy==3.1.1
+flask-marshmallow==1.2.1
+sqlalchemy==2.0.16
+pymysql==1.1.0
+marshmallow-sqlalchemy==1.0.0
