@@ -8,17 +8,21 @@ const Login = () => {
     const navigation = useNavigation();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    
 
     const navigateMain = async () => {
-        const loginURL = webServerUrl + "/";
-        const method = 'GET';
-        const data = null;
+        const loginURL = webServerUrl + "/login";
+        const method = 'POST';
+        const data = {
+            username: username, // Assuming username is defined somewhere in your code
+            password: password, // Assuming password is defined somewhere in your code
+        };
         const headers = {
             'ngrok-skip-browser-warning': 'true',
         }
 
         try {
-            const response = await HttpService(method, loginURL, data, headers);
+            const response = await HttpService(method, loginURL, data,headers);
             console.log(response.status);
             if (response.status === 200) {
                 console.log("Successful");
@@ -38,14 +42,14 @@ const Login = () => {
             setUsername('');
             setPassword('');
         }
-        navigation.navigate("UserInput");
+        navigation.navigate("UserInput", { username: username });
     };
 
     return (
         <View style={styles.container}>
             <View style={styles.formContainer}>
                 <View style={styles.logoContainer}>
-                    <Text style={styles.logoText}>Dhole</Text>
+                    <Text style={styles.logoText}>Auto Count</Text>
                 </View>
                 <View style={styles.inputContainer}>
                     <TextInput
