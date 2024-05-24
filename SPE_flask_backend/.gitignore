@@ -9,6 +9,8 @@ ENV/
 tmp_rep_result.mp4
 video.mp4
 yolov8x.pt
+rep_result.mp4
+
 
 app.log
 

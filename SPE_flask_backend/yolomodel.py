@@ -12,11 +12,12 @@ import numpy as np
 import os
 import subprocess
 
-from tqdm.notebook import tqdm
+from tqdm import tqdm
 
 # Display image and videos
 import IPython
 from IPython.display import Video, display
+
 
 
 def yolomodel(path):
@@ -31,7 +32,7 @@ def yolomodel(path):
     frac = 0.65 
     display(Video(data=path, height=int(720*frac), width=int(1280*frac)))
 
-    global vehicle_counts
+    vehicle_counts = {}
 
     # Clear previous counts
     vehicle_counts['in'] = 0
@@ -134,7 +135,7 @@ def yolomodel(path):
             print('Dimension Scaled(frame): ', (frame.shape[1], frame.shape[0]))
 
         # Getting predictions
-        y_hat = model.predict(frame, conf = 0.7, classes = class_IDS, device = 0, verbose = False)
+        y_hat = model.predict(frame, conf = 0.7, classes = class_IDS, device = "cpu", verbose = False)
         
         # Getting the bounding boxes, confidence and classes of the recognize objects in the current frame.
         boxes   = y_hat[0].boxes.xyxy.cpu().numpy()
@@ -142,7 +143,12 @@ def yolomodel(path):
         classes = y_hat[0].boxes.cls.cpu().numpy() 
         
         # Storing the above information in a dataframe
-        positions_frame = pd.DataFrame(y_hat[0].cpu().numpy().boxes.boxes, columns = ['xmin', 'ymin', 'xmax', 'ymax', 'conf', 'class'])
+        # positions_frame = pd.DataFrame(y_hat[0].cpu().numpy().boxes.boxes, columns = ['xmin', 'ymin', 'xmax', 'ymax', 'conf', 'class'])
+        
+        # Storing the above information in a dataframe
+        positions_frame = pd.DataFrame(np.hstack((boxes, conf.reshape(-1, 1), classes.reshape(-1, 1))), columns=['xmin', 'ymin', 'xmax', 'ymax', 'conf', 'class'])
+        
+        
         
         #Translating the numeric class labels to text
         labels = [dict_classes[i] for i in classes]
@@ -234,6 +240,8 @@ def yolomodel(path):
         ["ffmpeg",  "-i", tmp_output_path,"-crf","18","-preset","veryfast","-hide_banner","-loglevel","error","-vcodec","libx264",output_path])
     os.remove(tmp_output_path)
 
+    print("passed barrier 1 ................................")
+        
     #output video result
     frac = 0.7 
     Video(data='rep_result.mp4', embed=True, height=int(720 * frac), width=int(1280 * frac))

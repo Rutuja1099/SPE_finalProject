@@ -4,8 +4,8 @@ def create_database():
     # Database connection
     mydb = pymysql.connect(
         host="localhost",
-        user="Rutuja",
-        passwd="Rutuja@10",
+        user="root",
+        passwd="Saurabh123",
     )
 
     my_cursor = mydb.cursor()
