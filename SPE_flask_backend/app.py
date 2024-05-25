@@ -1,20 +1,20 @@
 from flask import Flask, jsonify, request
 import datetime
-from flask_cors import CORS #ModuleNotFoundError: No module named 'flask_cors' = pip install Flask-Cors
+from flask_cors import CORS 
 from urllib.parse import quote_plus
 import pickle
 import logging
 
-from flask_sqlalchemy import SQLAlchemy #pip install Flask-SQLAlchemy
-from flask_marshmallow import Marshmallow #ModuleNotFoundError: No module named 'flask_marshmallow' = pip install flask-marshmallow https://pypi.org/project/flask-marshmallow/
+from flask_sqlalchemy import SQLAlchemy 
+from flask_marshmallow import Marshmallow 
 from urllib.parse import quote_plus
 
 from create_db import create_database
 from yolomodel import yolomodel
 from sqlalchemy import Integer
 
-# from logstash_async.handler import AsynchronousLogstashHandler
-# from logstash_async.formatter import LogstashFormatter
+from logstash_async.handler import AsynchronousLogstashHandler
+from logstash_async.formatter import LogstashFormatter
 
 # ------------------------Defining flask app-------------------------
 
@@ -36,15 +36,15 @@ logger = logging.getLogger(__name__)
 
 
 # adding logstash
-# logstash_handler = AsynchronousLogstashHandler(
-#     host='logstash',  # Use the service name defined in docker-compose
-#     port=6000,
-#     database_path=None
-# )
+logstash_handler = AsynchronousLogstashHandler(
+    host='logstash',  # Use the service name defined in docker-compose
+    port=6000,
+    database_path=None
+)
 
-# logstash_formatter = LogstashFormatter()
-# logstash_handler.setFormatter(logstash_formatter)
-# logger.addHandler(logstash_handler)
+logstash_formatter = LogstashFormatter()
+logstash_handler.setFormatter(logstash_formatter)
+logger.addHandler(logstash_handler)
 
 
 
@@ -52,8 +52,8 @@ logger = logging.getLogger(__name__)
 
 # Databse configuration                                  Username:password@hostname/databasename
 password = quote_plus('Saurabh123')
-localhost = 'SPE_database'
-# localhost = 'localhost'
+# localhost = 'SPE_database'
+localhost = 'localhost'
 app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://root:{password}@{localhost}/SPE'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
