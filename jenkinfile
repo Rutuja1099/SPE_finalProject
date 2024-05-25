@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Stage 1: Git Clone') {
             steps {
-                git branch: 'frontend',
+                git branch: 'prototype1',
                 url: GITHUB_REPO_URL
             }
         }

@@ -11,37 +11,37 @@ const Login = () => {
     
 
     const navigateMain = async () => {
-        const loginURL = webServerUrl + "/login";
-        const method = 'POST';
-        const data = {
-            username: username, // Assuming username is defined somewhere in your code
-            password: password, // Assuming password is defined somewhere in your code
-        };
-        const headers = {
-            'ngrok-skip-browser-warning': 'true',
-        }
+        // const loginURL = webServerUrl + "/login";
+        // const method = 'POST';
+        // const data = {
+        //     username: username, // Assuming username is defined somewhere in your code
+        //     password: password, // Assuming password is defined somewhere in your code
+        // };
+        // const headers = {
+        //     'ngrok-skip-browser-warning': 'true',
+        // }
 
-        try {
-            const response = await HttpService(method, loginURL, data,headers);
-            console.log(response.status);
-            if (response.status === 200) {
-                console.log("Successful");
-                console.log(response.data);
-                try {
-                    // Handle success
-                } catch (error) {
-                    console.log("error while saving data");
-                    console.log(error);
-                }
-            } else {
-                alert(response.data.message);
-            }
-        } catch (error) {
-            alert(error.data.message);
-            console.log(error);
-            setUsername('');
-            setPassword('');
-        }
+        // try {
+        //     const response = await HttpService(method, loginURL, data,headers);
+        //     console.log(response.status);
+        //     if (response.status === 200) {
+        //         console.log("Successful");
+        //         console.log(response.data);
+        //         try {
+        //             // Handle success
+        //         } catch (error) {
+        //             console.log("error while saving data");
+        //             console.log(error);
+        //         }
+        //     } else {
+        //         alert(response.data.message);
+        //     }
+        // } catch (error) {
+        //     alert(error.data.message);
+        //     console.log(error);
+        //     setUsername('');
+        //     setPassword('');
+        // }
         navigation.navigate("UserInput", { username: username });
     };
 

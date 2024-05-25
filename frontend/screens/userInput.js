@@ -86,63 +86,14 @@ const UserInput = ({ route }) => {
     console.log(" in_bus: byClassIn.bus", byClassIn.bus)
     console.log("username: username", username);
     // setVehicleCounts(updatedCounts);
-    const addDataURL = webServerUrl + "/addData";
-        const method = 'POST';
-        const data = {
-            username: username,
-            in_bus: byClassIn.bus, // Assuming username is defined somewhere in your code
-            in_car: byClassIn.car,
-            in_motorcycle:byClassIn.motorcycle,
-            in_truck:byClassIn.truck,
-            out_bus: byClassOut.bus, // Assuming username is defined somewhere in your code
-            out_car: byClassOut.car,
-            out_motorcycle:byClassOut.motorcycle,
-            out_truck:byClassOut.truck,
-            in_total: inCount,
-            out_total:outCount
-        };
-        const headers = {
-            'ngrok-skip-browser-warning': 'true',
-        }
-        try {
-          const response = await HttpService(method, addDataURL, data,headers);
-          console.log(response.status);
-          if (response.status === 200) {
-              console.log("Successful");
-              console.log(response.data);
-              try {
-                  // Handle success
-              } catch (error) {
-                  console.log("error while saving data");
-                  console.log(error);
-              }
-          } else {
-              alert(response.data.message);
-          }
-      } catch (error) {
-          alert(error.data.message);
-          console.log(error);
-      }
-    // Show alert with an "OK" button that navigates to the next screen
-    Alert.alert(
-      'Upload Successful',
-      'Video has been processed successfully.',
-      [
-        {
-          text: 'OK',
-          onPress: () => {
-            // Navigate to the VehicleCountsScreen and pass the vehicleCounts data
-            navigation.navigate("VehicleCountsScreen", { responseObject, username });
-          },
-        },
-      ]
-    );
+    navigation.navigate("VehicleCountsScreen", { responseObject, username });
   
   }
   catch (error) {
     console.error("Error uploading video:", error);
     Alert.alert("Upload Error", "Failed to upload the video.");
   }
+  
   }
 
   return (
