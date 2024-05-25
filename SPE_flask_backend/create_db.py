@@ -2,8 +2,9 @@ import pymysql
 
 def create_database():
     # Database connection
+    localhost1 = 'SPE_database'
     mydb = pymysql.connect(
-        host="localhost",
+        host=localhost1,
         user="root",
         passwd="Saurabh123",
     )

@@ -6,6 +6,7 @@ import * as FS from "expo-file-system";
 import * as ImagePicker from 'expo-image-picker';
 import webServerUrl from '../configurations/webServer';
 import { useNavigation } from '@react-navigation/native';
+import HttpService from '../services/HttpService';
 
 const UserInput = ({ route }) => {
   const { username } = route.params;

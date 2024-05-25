@@ -4,35 +4,31 @@ import { useNavigation } from '@react-navigation/native';
 import HttpService from '../services/HttpService';
 import webServerUrl from '../configurations/webServer';
 
-const Login = () => {
+const Signup = () => {
     const navigation = useNavigation();
     const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    
 
-    const navigateMain = async () => {
-        const loginURL = webServerUrl + "/login";
+    const navigateLogin = async () => {
+        const signupURL = webServerUrl + "/signup";
         const method = 'POST';
         const data = {
-            username: username, // Assuming username is defined somewhere in your code
-            password: password, // Assuming password is defined somewhere in your code
+            username: username,
+            email: email,
+            password: password,
         };
         const headers = {
             'ngrok-skip-browser-warning': 'true',
         }
 
         try {
-            const response = await HttpService(method, loginURL, data,headers);
+            const response = await HttpService(method, signupURL, data, headers);
             console.log(response.status);
             if (response.status === 200) {
-                console.log("Successful");
+                console.log("Signup Successful");
                 console.log(response.data);
-                try {
-                    // Handle success
-                } catch (error) {
-                    console.log("error while saving data");
-                    console.log(error);
-                }
+                // Navigate to the Login screen or the main application screen
             } else {
                 alert(response.data.message);
             }
@@ -40,20 +36,18 @@ const Login = () => {
             alert(error.data.message);
             console.log(error);
             setUsername('');
+            setEmail('');
             setPassword('');
         }
-        navigation.navigate("UserInput", { username: username });
+        navigation.navigate("Login");
+
     };
 
-
-    const navigateSignup = () => {
-        navigation.navigate("Signup");
-    }
     return (
         <View style={styles.container}>
             <View style={styles.formContainer}>
                 <View style={styles.logoContainer}>
-                    <Text style={styles.logoText}>Auto Count</Text>
+                    <Text style={styles.logoText}>Sign Up</Text>
                 </View>
                 <View style={styles.inputContainer}>
                     <TextInput
@@ -61,25 +55,30 @@ const Login = () => {
                         placeholderTextColor="#fff"
                         style={styles.input}
                         onChangeText={(text) => setUsername(text)}
+                        value={username}
+                    />
+                    <TextInput
+                        placeholder="Email"
+                        placeholderTextColor="#fff"
+                        style={styles.input}
+                        onChangeText={(text) => setEmail(text)}
+                        value={email}
                     />
                     <TextInput
                         placeholder="Password"
                         placeholderTextColor="#fff"
                         style={styles.input}
+                        secureTextEntry={true}
                         onChangeText={(text) => setPassword(text)}
+                        value={password}
                     />
                 </View>
-                <View style={styles.forgotPasswordContainer}>
-                    <Pressable>
-                        <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-                    </Pressable>
-                </View>
-                <Pressable style={styles.submitButton} onPress={navigateMain}>
-                    <Text style={styles.submitButtonText}>SUBMIT</Text>
+                <Pressable style={styles.submitButton} onPress={navigateLogin}>
+                    <Text style={styles.submitButtonText}>SIGN UP</Text>
                 </Pressable>
-                <View style={styles.signupContainer}>
-                    <Pressable onPress={navigateSignup}>
-                        <Text style={styles.signupText}>Don't have an account? Sign up</Text>
+                <View style={styles.loginContainer}>
+                    <Pressable onPress={() => navigation.navigate("Login")}>
+                        <Text style={styles.loginText}>Already have an account? Log in</Text>
                     </Pressable>
                 </View>
             </View>
@@ -119,13 +118,6 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 16,
     },
-    forgotPasswordContainer: {
-        marginBottom: 10,
-    },
-    forgotPasswordText: {
-        color: '#ccc',
-        fontSize: 12,
-    },
     submitButton: {
         backgroundColor: '#00bcd4',
         paddingHorizontal: 20,
@@ -139,13 +131,13 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
     },
-    signupContainer: {
+    loginContainer: {
         alignItems: 'center',
     },
-    signupText: {
+    loginText: {
         color: '#ccc',
         fontSize: 12,
     },
 });
 
-export default Login;
+export default Signup;

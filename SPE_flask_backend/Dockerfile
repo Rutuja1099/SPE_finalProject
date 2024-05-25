@@ -30,6 +30,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 RUN pip install python-logstash-async
 
+# Install ffmpeg
+RUN apt-get update && apt-get install -y ffmpeg
+
 # Copy the entire backend directory to the working directory
 COPY . .
 

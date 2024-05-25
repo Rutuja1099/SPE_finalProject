@@ -18,7 +18,7 @@ services:
   container2:
     image: backend-image
     ports:
-      - "127.0.0.1:5000:5000"
+      - "5000:5000"
     networks:
       - mynetwork
     depends_on:
@@ -44,69 +44,13 @@ services:
       - MYSQL_ROOT_PASSWORD=Saurabh123
       - MYSQL_DATABASE=SPE
     volumes:
-      - userservice_database:/var/lib/mysql
+      - vehiclecount_database:/var/lib/mysql
     command: --bind-address=0.0.0.0
     networks:
       - mynetwork
 
-
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.3.3
-    container_name: elasticsearch
-    restart: always
-    environment:
-      - network.host=0.0.0.0
-      - http.port=9200
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"  # Set JVM heap size options
-      - xpack.security.enabled=false
-      - discovery.type=single-node
-    ports:
-      - "9200:9200"
-      - "9300:9300"
-    networks:
-      - mynetwork
-    volumes:
-      - elastic_data:/usr/share/elasticsearch/data
-      - /home/saurabh/MTech/sem2/spe/finalproject/SPE_finalProject/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch/elasticsearch.yml:ro,z
-  
-  logstash:
-    image: docker.elastic.co/logstash/logstash:8.3.3
-    container_name: logstash
-    restart: always
-    volumes:
-      - ./logstash.yml:/usr/share/logstash/config/logstash.yml:ro
-      - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
-    ports:
-      - "6000:6000/tcp"
-      - "9600:9600"
-    networks:
-      - mynetwork
-    depends_on:
-      - elasticsearch
-
-  
-  kibana:
-    image: docker.elastic.co/kibana/kibana:8.3.3
-    container_name: kibana
-    restart: always
-    environment:
-      - ELASTICSEARCH_URL=http://elasticsearch:9200
-      - ELASTICSEARCH_HOSTS=["http://elasticsearch:9200"]
-    volumes:
-      - ./kibana.yml:/usr/share/kibana/config/kibana.yml:ro,Z
-    ports:
-      - "5601:5601"
-    networks:
-      - mynetwork
-    depends_on:
-      - elasticsearch
-
-
 volumes:
-  elastic_data:
-    driver: local
-
-
+  vehiclecount_database:
 
 networks:
   mynetwork:

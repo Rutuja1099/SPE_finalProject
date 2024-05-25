@@ -52,7 +52,8 @@ logger = logging.getLogger(__name__)
 
 # Databse configuration                                  Username:password@hostname/databasename
 password = quote_plus('Saurabh123')
-app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://root:{password}@localhost/SPE'
+localhost = 'SPE_database'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://root:{password}@{localhost}/SPE'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db=SQLAlchemy(app)
@@ -98,7 +99,7 @@ class Users(db.Model):
     email = db.Column(db.String(100))
     password = db.Column(db.String(100), nullable=False)
 
-    def _init_(self,username,email, password):
+    def __init__(self,username,email, password):
         self.username=username
         self.email=email
         self.password=password
@@ -158,7 +159,6 @@ def addData():
  
 @app.route('/signup', methods=['POST'])
 def signup():
-    name = request.json['name']
     email = request.json['email']
     username = request.json['username']
     password = request.json['password']
@@ -210,10 +210,10 @@ def get_counts():
     return jsonify(vehicle_counts)
 
 
-
+create_database()
 
 if __name__=='__main__':
     with app.app_context():
-        create_database()
+        # create_database()
         create_tables()
         app.run(debug=True)
