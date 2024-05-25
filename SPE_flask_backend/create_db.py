@@ -3,6 +3,7 @@ import pymysql
 def create_database():
     # Database connection
     localhost1 = 'SPE_database'
+    # localhost1 = 'localhost'
     mydb = pymysql.connect(
         host=localhost1,
         user="root",

@@ -53,6 +53,7 @@ logger = logging.getLogger(__name__)
 # Databse configuration                                  Username:password@hostname/databasename
 password = quote_plus('Saurabh123')
 localhost = 'SPE_database'
+# localhost = 'localhost'
 app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://root:{password}@{localhost}/SPE'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -93,7 +94,7 @@ class VehicleData(db.Model):
     
    
 class Users(db.Model):
-    _tablename_ = "users"
+    __tablename__ = "users"
     id = db.Column(db.Integer,primary_key=True)
     username = db.Column(db.String(100), index=True) 
     email = db.Column(db.String(100))
@@ -210,10 +211,10 @@ def get_counts():
     return jsonify(vehicle_counts)
 
 
-create_database()
+# create_database()
 
 if __name__=='__main__':
     with app.app_context():
-        # create_database()
+        create_database()
         create_tables()
-        app.run(debug=True)
+    app.run(debug=True)
