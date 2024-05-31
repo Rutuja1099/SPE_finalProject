@@ -10,8 +10,8 @@ COPY ./package-lock.json /app
 # Copy the entire frontend directory to the working directory
 COPY . /app
 
-RUN npm install -g expo-cli && \
-    npm install expo-build-properties@0.11.1 --force
+# RUN npm install -g expo-cli && \
+#    npm install expo-build-properties@0.11.1 --force
 
 
 RUN npm install
