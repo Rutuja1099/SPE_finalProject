@@ -1,10 +1,14 @@
 -i https://pypi.python.org/simple/
 virtualenv==20.26.2
-Flask==3.0.3
-Flask-Cors==4.0.1
-pytest==7.1.2
 Flask-SQLAlchemy==3.1.1
+Flask==3.0.3
 flask-marshmallow==1.2.1
 sqlalchemy==2.0.16
+Flask-Cors==4.0.1
+opencv-python==4.9.0.80
+ultralytics==8.2.15
+ipython==8.18.1
+cryptography==42.0.7 
+pytest==7.1.2
 pymysql==1.1.0
 marshmallow-sqlalchemy==1.0.0
