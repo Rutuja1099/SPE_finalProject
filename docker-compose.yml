@@ -43,8 +43,8 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=Saurabh123
       - MYSQL_DATABASE=SPE
-    volumes:
-      - userservice_database:/var/lib/mysql
+#    volumes:
+#      - userservice_database:/var/lib/mysql
     command: --bind-address=0.0.0.0
     networks:
       - mynetwork

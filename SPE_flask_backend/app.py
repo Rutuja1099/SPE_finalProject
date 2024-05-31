@@ -11,10 +11,10 @@ from urllib.parse import quote_plus
 
 from create_db import create_database
 
-# from yolomodel import yolo_model
+from yolomodel import yolo_model
 
-# from logstash_async.handler import AsynchronousLogstashHandler
-# from logstash_async.formatter import LogstashFormatter
+from logstash_async.handler import AsynchronousLogstashHandler
+from logstash_async.formatter import LogstashFormatter
 
 
 # ------------------------Defining flask app-------------------------
@@ -37,15 +37,15 @@ logger = logging.getLogger(__name__)
 
 
 # adding logstash
-# logstash_handler = AsynchronousLogstashHandler(
-#     host='logstash',  # Use the service name defined in docker-compose
-#     port=6000,
-#     database_path=None
-# )
+logstash_handler = AsynchronousLogstashHandler(
+    host='logstash',  # Use the service name defined in docker-compose
+    port=6000,
+    database_path=None
+)
 
-# logstash_formatter = LogstashFormatter()
-# logstash_handler.setFormatter(logstash_formatter)
-# logger.addHandler(logstash_handler)
+logstash_formatter = LogstashFormatter()
+logstash_handler.setFormatter(logstash_formatter)
+logger.addHandler(logstash_handler)
 
 
 
