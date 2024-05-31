@@ -50,7 +50,7 @@ logger.addHandler(logstash_handler)
 
 # ------------------------Database configuration-------------------------
 
-# Databse configuration                                  Username:password@hostname/databasename
+# Databse configuration                                  
 password = quote_plus('Saurabh123')
 # localhost = 'SPE_database'
 localhost = 'localhost'
